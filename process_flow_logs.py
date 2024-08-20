@@ -45,7 +45,7 @@ def get_lookup_table(lookup_table_path: str) -> dict:
 
                 key = (dstport, protocol)
 
-                lookup_table[key] = row['tag'].strip()
+                lookup_table[key] = row['tag'].strip().lower()
     except Exception as e:
         print(f"Error reading lookup table: {e}")
 
@@ -55,7 +55,7 @@ def get_lookup_table(lookup_table_path: str) -> dict:
 def count_tags(port_protocol_count: dict, lookup_table: dict) -> dict:
     tag_count = {}
     for key, count in port_protocol_count.items():
-        tag = lookup_table.get(key, "Untagged")
+        tag = lookup_table.get(key, "untagged")
         tag_count[tag] = tag_count.get(tag, 0) + count
 
     return tag_count
