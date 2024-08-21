@@ -28,6 +28,7 @@ Below scenarios have been tested:
 
 - Protocol keywords are fetched from a csv found here: https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
 - protocols-numbers-1.csv must be present in the cwd for the program to execute
+- Protocol numbers not found within the csv are set to the keyword "unknown"
 - Only dstport is considered
 - Tag matches are case-insensitive
 - Protocol matches are case-insensitive
