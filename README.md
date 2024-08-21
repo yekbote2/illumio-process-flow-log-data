@@ -34,14 +34,17 @@ Below scenarios have been tested:
 Example:
 
 Lookup table:
+
 port, protocol, tag
 20, tcp, sv_p1
 
 Protocol counts:
+
 port, protocol, count
 20,tcp,5
 
 Tag counts:
+
 tag, count
 sv_p1, 5
 
