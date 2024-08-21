@@ -26,8 +26,8 @@ Below scenarios have been tested:
 
 ### Assumptions/Working
 
-- Protocol integer values are mapped to their names via a hardcoded dictionary [Reference: https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml]
-- Only TCP and UDP protocols are hardcoded, rest are mapped as unknown
+- Protocol keywords are fetched from a csv found here : https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml]
+- protocols-numbers-1.csv must be present in the cwd for the program to execute
 - Only dstport is considered
 - Tag counts are increased by the total number of port/protocol counts found associated with that tag
 Example:
@@ -66,5 +66,4 @@ Space: O(n)
 Time: O(n)
 
 ### Improvements
-- Protocols can be maintained in a file or database rather than hardcoded to allow easy modification
 - Performance can be drastically improved if Map/Reduce is used

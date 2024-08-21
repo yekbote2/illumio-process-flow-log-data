@@ -1,21 +1,27 @@
 import sys
 import csv
 
+
 # Reference: https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
-def get_protocol(protocol_id: int):
-    id_protocol_map = {
-        6: "tcp",
-        17: "udp"
-    }
-
-    if protocol_id not in id_protocol_map:
-        print(f"Protocol with id: {protocol_id} not found. Set to default unknown.")
-
-    return id_protocol_map.get(protocol_id, "unknown").lower()
+def get_protocol_keywords() -> dict:
+    protocol_keyword_map = {}
+    try:
+        with open("protocol-numbers-1.csv", 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                id = row['Decimal'].strip()
+                keyword = row['Keyword'].strip().lower()
+                protocol_keyword_map[id] = keyword
+    except Exception as e:
+        print(f"Error reading protocols csv: {e}")
+    
+    return protocol_keyword_map
 
 
 def parse_logs(log_path: str) -> dict:
     port_protocol_count = {}
+    protocol_keyword_map = get_protocol_keywords()
+
     try:
         with open(log_path, 'r') as logs:
             for log in logs:
@@ -23,8 +29,8 @@ def parse_logs(log_path: str) -> dict:
                 parts = log.split(' ')
 
                 dstport = int(parts[6])
-                protocol_id = int(parts[7])
-                protocol = get_protocol(protocol_id)
+                protocol_id = parts[7]
+                protocol = protocol_keyword_map.get(protocol_id, "unknown")
                 
                 key = (dstport, protocol)
                 port_protocol_count[key] = port_protocol_count.get(key, 0) + 1
