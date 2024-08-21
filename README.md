@@ -29,33 +29,26 @@ Below scenarios have been tested:
 - Protocol keywords are fetched from a csv found here : https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml]
 - protocols-numbers-1.csv must be present in the cwd for the program to execute
 - Only dstport is considered
-- Tag counts are increased by the total number of port/protocol counts found associated with that tag
-
-Example:
-
-Lookup table:
-
-port, protocol, tag
-
-20, tcp, sv_p1
-
-Protocol counts:
-
-port, protocol, count
-
-20,tcp,5
-
-Tag counts:
-
-tag, count
-
-sv_p1, 5
-
 - Tag matches are case-insensitive
 - Protocol matches are case-insensitive
 - Lookup table file is not malformed
 - Logs file is not malformed and follows the version 2 format [Reference: https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields]
 - Python script is provided. Executable can be created via pyinstaller if needed
+- Tag counts are increased by the total number of port/protocol counts found associated with that tag
+
+Example:
+
+Lookup table: <br/>
+port, protocol, tag <br/>
+20, tcp, sv_p1 <br/>
+
+Protocol counts: <br/>
+port, protocol, count <br/>
+20,tcp,5 <br/>
+
+Tag counts: <br/>
+tag, count <br/>
+sv_p1, 5 <br/>
 
 ### Complexity
 
